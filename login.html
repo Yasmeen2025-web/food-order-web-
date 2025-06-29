@@ -3,25 +3,317 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login | Restaurant Admin</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Sofra Admin Dashboard</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --main-bg: #f9f9f9;
+      --card-bg: #fff;
+      --primary: #d63031;
+      --secondary: #f1c40f;
+      --text-dark: #2c3e50;
+      --text-light: #7f8c8d;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--main-bg);
+    }
+    header {
+      background-color: var(--primary);
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 24px;
+    }
+    .logout-btn {
+      background-color: #fff;
+      color: var(--primary);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .dashboard-container {
+      padding: 40px;
+    }
+    .welcome {
+      font-size: 22px;
+      margin-bottom: 30px;
+      color: var(--text-dark);
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      padding: 25px;
+      position: relative;
+      transition: 0.3s;
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+    .card i {
+      font-size: 30px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .card h3 {
+      margin: 10px 0 5px;
+      color: var(--text-dark);
+    }
+    .card p {
+      color: var(--text-light);
+      font-size: 14px;
+      flex-grow: 1;
+    }
+    .card .stat {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--secondary);
+      margin-top: 8px;
+      text-align: right;
+    }
+    .card-image {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 50px;
+      height: 50px;
+      background-size: cover;
+      border-radius: 50%;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    /* Charts Section */
+    .charts-section {
+      margin-top: 50px;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .chart-container {
+      flex: 1 1 45%;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .chart-container h3 {
+      margin-bottom: 20px;
+      color: var(--text-dark);
+    }
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .chart-container {
+        flex: 1 1 100%;
+      }
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+      margin-top: 50px;
+    }
+  </style>
 </head>
 <body>
-  <div class="login-container">
-    <form class="login-form">
-      <h2>Welcome to Sofra Admin</h2>
-      
-      <input type="text" placeholder="Username or Email" required>
-      <input type="password" placeholder="Password" required>
-      
-      <div class="form-options">
-        <a href="forget-password.html" class="forgot-link">Forgot password?</a>
+
+  <header>
+    <h1>Sofra Admin Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </header>
+
+  <div class="dashboard-container">
+    <p class="welcome">Welcome, <span id="adminName"></span> 👋</p>
+
+    <div class="cards">
+      <a href="orders.html" class="card">
+        <i class="fas fa-receipt"></i>
+        <h3>Orders</h3>
+        <p>Manage incoming orders.</p>
+        <div class="stat">128</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/B4Y2JvE.png');"></div>
+      </a>
+
+      <a href="menu.html" class="card">
+        <i class="fas fa-utensils"></i>
+        <h3>Menu</h3>
+        <p>Update your meals and prices.</p>
+        <div class="stat">24 Dishes</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/r1Q2FhE.png');"></div>
+      </a>
+
+      <a href="customers.html" class="card">
+        <i class="fas fa-users"></i>
+        <h3>Customers</h3>
+        <p>Check loyal and new customers.</p>
+        <div class="stat">345</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/5aWjj1I.png');"></div>
+      </a>
+
+      <a href="stats.html" class="card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Statistics</h3>
+        <p>Track your daily performance.</p>
+        <div class="stat">+12% Today</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/4PbmA2x.png');"></div>
+      </a>
+
+      <a href="finance.html" class="card">
+        <i class="fas fa-dollar-sign"></i>
+        <h3>Financial Summary</h3>
+        <p>Revenue, expenses & profit trends.</p>
+        <div class="stat">$12,450</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/XK6HQXZ.png');"></div>
+      </a>
+
+      <a href="sales.html" class="card">
+        <i class="fas fa-store"></i>
+        <h3>Sales Management</h3>
+        <p>Track orders and daily totals.</p>
+        <div class="stat">+8% Today</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/YuBEn7M.png');"></div>
+      </a>
+
+      <a href="inventory.html" class="card">
+        <i class="fas fa-boxes"></i>
+        <h3>Inventory</h3>
+        <p>Monitor stock levels.</p>
+        <div class="stat">72 items</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/8vQjIQC.png');"></div>
+      </a>
+
+      <a href="staff.html" class="card">
+        <i class="fas fa-user-tie"></i>
+        <h3>Staff Management</h3>
+        <p>Manage employee roles & shifts.</p>
+        <div class="stat">12 staff</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/K49XnxF.png');"></div>
+      </a>
+
+      <a href="satisfaction.html" class="card">
+        <i class="fas fa-smile"></i>
+        <h3>Customer Satisfaction</h3>
+        <p>Analyze feedback and ratings.</p>
+        <div class="stat">4.6 / 5</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/jNeDgOr.png');"></div>
+      </a>
+
+      <a href="reports.html" class="card">
+        <i class="fas fa-file-alt"></i>
+        <h3>Performance Reports</h3>
+        <p>Download monthly data.</p>
+        <div class="stat">PDF / Excel</div>
+        <div class="card-image" style="background-image: url('https://i.imgur.com/pRCP7l8.png');"></div>
+      </a>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+      <div class="chart-container">
+        <h3>Sales Overview</h3>
+        <canvas id="salesChart"></canvas>
       </div>
-      
-      <button type="submit">Login</button>
-      <p class="footer-text">© 2025 Sofra Restaurant</p>
-    </form>
+
+      <div class="chart-container">
+        <h3>Customer Satisfaction</h3>
+        <canvas id="satisfactionChart"></canvas>
+      </div>
+    </div>
   </div>
-  <script src="script.js"></script>
+
+  <footer>
+    © 2025 Sofra Restaurant. All rights reserved.
+  </footer>
+
+  <script>
+    // Check login session
+    const name = localStorage.getItem("loggedInAdmin");
+    if (!name) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("adminName").textContent = name;
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInAdmin");
+      window.location.href = "login.html";
+    }
+
+    // Sales Chart - Line
+    const salesCtx = document.getElementById('salesChart').getContext('2d');
+    const salesChart = new Chart(salesCtx, {
+      type: 'line',
+      data: {
+        labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+        datasets: [{
+          label: 'Sales (USD)',
+          data: [1200, 1900, 1500, 2200, 1800, 2400, 2000],
+          backgroundColor: 'rgba(214, 48, 49, 0.2)',
+          borderColor: 'rgba(214, 48, 49, 1)',
+          borderWidth: 2,
+          tension: 0.4,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Customer Satisfaction Chart - Pie
+    const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
+    const satisfactionChart = new Chart(satisfactionCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Excellent', 'Good', 'Average', 'Poor'],
+        datasets: [{
+          data: [55, 25, 15, 5],
+          backgroundColor: [
+            'rgba(241, 196, 15, 0.8)',
+            'rgba(46, 204, 113, 0.8)',
+            'rgba(52, 152, 219, 0.8)',
+            'rgba(231, 76, 60, 0.8)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true
+      }
+    });
+  </script>
 </body>
 </html>

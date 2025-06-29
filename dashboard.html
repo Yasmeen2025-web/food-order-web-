@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sofra Admin Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f7fa;
+    }
+
+    header {
+      background-color: #2c3e50;
+      color: #fff;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      font-size: 24px;
+    }
+
+    .logout-btn {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .dashboard-container {
+      padding: 40px;
+    }
+
+    .welcome {
+      font-size: 22px;
+      margin-bottom: 30px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      padding: 20px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .card p {
+      color: #555;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Sofra Admin Dashboard</h1>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </header>
+
+  <div class="dashboard-container">
+    <p class="welcome">Welcome, <span id="adminName"></span> 👋</p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Orders</h3>
+        <p>View and manage customer orders.</p>
+      </div>
+      <div class="card">
+        <h3>Menu Items</h3>
+        <p>Add, edit, or remove dishes from the menu.</p>
+      </div>
+      <div class="card">
+        <h3>Customers</h3>
+        <p>View customer information and feedback.</p>
+      </div>
+      <div class="card">
+        <h3>Statistics</h3>
+        <p>Track restaurant performance and sales.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Sofra Restaurant. All rights reserved.
+  </footer>
+
+  <script>
+    const name = localStorage.getItem("loggedInAdmin");
+
+    if (!name) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("adminName").textContent = name;
+    }
+
+    function logout() {
+      localStorage.removeItem("loggedInAdmin");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
