@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sofra Menu</title>
-  <link rel="stylesheet" href="menu.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <style>
@@ -14,34 +13,67 @@
       background-color: #fffaf5;
       color: #333;
     }
-    .menu-nav {
+
+    header {
       background-color: #d94c3d;
-      padding: 15px;
+      color: white;
+      padding: 20px;
       text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 2px;
     }
-    .menu-nav ul {
+
+    nav.menu-nav {
+      background-color: #f7f1ee;
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav.menu-nav ul {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
+      display: inline-flex;
+      gap: 30px;
     }
-    .menu-nav a {
-      color: #fff;
+
+    nav.menu-nav a {
+      color: #d94c3d;
       text-decoration: none;
-      font-weight: bold;
+      font-weight: 600;
+      font-size: 16px;
+      transition: color 0.3s ease;
     }
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
-      margin-bottom: 10px;
-      text-align: center;
+
+    nav.menu-nav a:hover {
+      color: #b03b2d;
     }
+
     .menu-container {
       padding: 60px 10%;
     }
+
+    .back-home-btn {
+      display: inline-block;
+      margin-bottom: 30px;
+      padding: 10px 25px;
+      background-color: #d94c3d;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-home-btn:hover {
+      background-color: #b03b2d;
+    }
+
     .menu-container h2 {
       text-align: center;
       color: #d94c3d;
@@ -49,24 +81,29 @@
       margin-bottom: 40px;
       animation: fadeInDown 1s ease-out;
     }
+
     .menu-section {
       margin-bottom: 50px;
     }
+
     .menu-section h2 {
       margin-bottom: 20px;
       color: #333;
     }
+
     .menu-section h2 i {
-        color: #d94c3d; 
-        margin-right: 10px;
-        vertical-align: middle;
-        font-size: 1.3em;
-      }
+      color: #d94c3d; 
+      margin-right: 10px;
+      vertical-align: middle;
+      font-size: 1.3em;
+    }
+
     .menu-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
     }
+
     .menu-item {
       background-color: white;
       border-radius: 12px;
@@ -76,9 +113,11 @@
       transition: transform 0.3s;
       animation: fadeInUp 1s ease;
     }
+
     .menu-item:hover {
       transform: translateY(-5px);
     }
+
     .menu-item img {
       width: 100%;
       height: 180px;
@@ -86,14 +125,17 @@
       border-radius: 10px;
       margin-bottom: 15px;
     }
+
     .menu-item h3 {
       color: #2c3e50;
       margin: 10px 0;
     }
+
     .menu-item p {
       font-size: 14px;
       color: #666;
     }
+
     .price {
       color: #d94c3d;
       font-weight: bold;
@@ -101,20 +143,37 @@
       margin-top: 10px;
     }
 
-    .footer {
-        background-color: #f1f1f1;
-        text-align: center;
-        padding: 20px;
-        font-size: 14px;
-        color: #555;
-        margin-top: 40px;
-      }
-   
-   
+    .order-btn {
+      margin-top: 12px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #d94c3d;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .order-btn:hover {
+      background-color: #b03b2d;
+    }
+
+    footer.footer {
+      background-color: #d94c3d;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
+      letter-spacing: 1.2px;
+    }
+
     @keyframes fadeInUp {
       0% { opacity: 0; transform: translateY(30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes fadeInDown {
       0% { opacity: 0; transform: translateY(-30px); }
       100% { opacity: 1; transform: translateY(0); }
@@ -122,22 +181,27 @@
   </style>
 </head>
 <body>
+
   <header>
-    <div class="logo">Sofra</div>
-    <nav class="menu-nav">
-      <ul>
-        <li><a href="#main-dishes">Main Dishes</a></li>
-        <li><a href="#appetizers">Appetizers</a></li>
-        <li><a href="#salads">Salads</a></li>
-        <li><a href="#desserts">Desserts</a></li>
-        <li><a href="#drinks">Drinks</a></li>
-      </ul>
-    </nav>
+    Sofra Restaurant
   </header>
 
+  <nav class="menu-nav">
+    <ul>
+      <li><a href="#main-dishes">Main Dishes</a></li>
+      <li><a href="#appetizers">Appetizers</a></li>
+      <li><a href="#salads">Salads</a></li>
+      <li><a href="#desserts">Desserts</a></li>
+      <li><a href="#drinks">Drinks</a></li>
+    </ul>
+  </nav>
+
   <main class="menu-container">
+
+    <a href="index.html" class="back-home-btn">← Back to Home</a>
+
     <section id="main-dishes">
-      <h2><i class="fas fa-utensils"></i>Main Dishes</h2>
+      <h2><i class="fas fa-utensils"></i> Main Dishes</h2>
       <div class="menu-grid">
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/kebab.jpg" alt="Kebab" />
@@ -151,116 +215,131 @@
           <h3>Jordanian Mansaf</h3>
           <p>Traditional lamb dish with jameed sauce and rice.</p>
           <span class="price">$14.50</span>
+          <button class="order-btn" data-name="Jordanian Mansaf" data-price="14.50">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/shish-tawook.jpg" alt="Shish Tawook" />
           <h3>Shish Tawook</h3>
           <p>Grilled chicken skewers marinated in garlic and yogurt.</p>
           <span class="price">$11.50</span>
+          <button class="order-btn" data-name="Shish Tawook" data-price="11.50">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/mixed-grill.jpg" alt="Mixed Grill" />
           <h3>Mixed Grill</h3>
           <p>A combination of lamb, chicken, and kofta skewers.</p>
           <span class="price">$15.99</span>
+          <button class="order-btn" data-name="Mixed Grill" data-price="15.99">Order Now</button>
         </div>
       </div>
     </section>
 
     <section id="appetizers">
-      <h2><i class="fas fa-leaf"></i>Appetizers</h2>
+      <h2><i class="fas fa-leaf"></i> Appetizers</h2>
       <div class="menu-grid">
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/hummus.jpg" alt="Hummus" />
           <h3>Classic Hummus</h3>
           <p>Creamy chickpea hummus with olive oil and pita bread.</p>
           <span class="price">$5.99</span>
+          <button class="order-btn" data-name="Classic Hummus" data-price="5.99">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/mutabbal.jpg" alt="Mutabbal" />
           <h3>Mutabbal</h3>
           <p>Smoky eggplant dip topped with olive oil and herbs.</p>
           <span class="price">$4.50</span>
+          <button class="order-btn" data-name="Mutabbal" data-price="4.50">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/falafel.jpg" alt="Falafel" />
           <h3>Falafel</h3>
           <p>Deep-fried balls made from ground chickpeas, herbs and spices.</p>
           <span class="price">$4.99</span>
+          <button class="order-btn" data-name="Falafel" data-price="4.99">Order Now</button>
         </div>
       </div>
     </section>
 
     <section id="salads">
-      <h2><i class="fas fa-carrot"></i>Salads</h2>
+      <h2><i class="fas fa-carrot"></i> Salads</h2>
       <div class="menu-grid">
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/fattoush.jpg" alt="Fattoush" />
           <h3>Fattoush</h3>
           <p>Crispy bread, lettuce, tomato, cucumber, and sumac vinaigrette.</p>
           <span class="price">$6.25</span>
+          <button class="order-btn" data-name="Fattoush" data-price="6.25">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/tabbouleh.jpg" alt="Tabbouleh" />
           <h3>Tabbouleh</h3>
           <p>Fresh parsley salad with tomato, mint, onion, and bulgur.</p>
           <span class="price">$5.75</span>
+          <button class="order-btn" data-name="Tabbouleh" data-price="5.75">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/greek-salad.jpg" alt="Greek Salad" />
           <h3>Greek Salad</h3>
           <p>Tomatoes, cucumber, olives, onions, and feta cheese.</p>
           <span class="price">$6.50</span>
+          <button class="order-btn" data-name="Greek Salad" data-price="6.50">Order Now</button>
         </div>
       </div>
     </section>
 
     <section id="desserts">
-      <h2><i class="fas fa-ice-cream"></i>Desserts</h2>
+      <h2><i class="fas fa-ice-cream"></i> Desserts</h2>
       <div class="menu-grid">
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/kunafa.jpg" alt="Kunafa" />
           <h3>Kunafa</h3>
           <p>Sweet and cheesy Arabic dessert with crispy crust.</p>
           <span class="price">$6.99</span>
+          <button class="order-btn" data-name="Kunafa" data-price="6.99">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/baklava.jpg" alt="Baklava" />
           <h3>Baklava</h3>
           <p>Layers of filo pastry filled with chopped nuts and sweetened with syrup.</p>
           <span class="price">$5.50</span>
+          <button class="order-btn" data-name="Baklava" data-price="5.50">Order Now</button>
         </div>
       </div>
     </section>
 
     <section id="drinks">
-      <h2><i class="fas fa-cocktail"></i>Drinks</h2>
+      <h2><i class="fas fa-cocktail"></i> Drinks</h2>
       <div class="menu-grid">
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/mint-lemon.jpg" alt="Mint Lemonade" />
           <h3>Mint Lemonade</h3>
           <p>Fresh and icy mint lemonade — the perfect refreshment.</p>
           <span class="price">$3.99</span>
+          <button class="order-btn" data-name="Mint Lemonade" data-price="3.99">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/orange-juice.jpg" alt="Orange Juice" />
           <h3>Orange Juice</h3>
           <p>Freshly squeezed oranges with no sugar added.</p>
           <span class="price">$3.50</span>
+          <button class="order-btn" data-name="Orange Juice" data-price="3.50">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/arabic-coffee.jpg" alt="Arabic Coffee" />
           <h3>Arabic Coffee</h3>
           <p>Strong and aromatic coffee brewed with cardamom.</p>
           <span class="price">$2.99</span>
+          <button class="order-btn" data-name="Arabic Coffee" data-price="2.99">Order Now</button>
         </div>
       </div>
     </section>
+
   </main>
-  
-   <footer class="footer">
-      &copy; 2025 Sofra Restaurant. All rights reserved.
-    </footer>
+
+  <footer class="footer">
+    &copy; 2025 Sofra Restaurant. All rights reserved.
+  </footer>
 
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
@@ -269,11 +348,10 @@
       link.addEventListener("click", function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute("href"));
-        target.scrollIntoView({ behavior: "smooth" });
+        if(target) target.scrollIntoView({ behavior: "smooth" });
       });
     });
-  </script>
-  <script>
+
     document.querySelectorAll('.order-btn').forEach(button => {
       button.addEventListener('click', () => {
         const name = button.dataset.name;
