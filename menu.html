@@ -144,6 +144,7 @@
           <h3>Grilled Kebab</h3>
           <p>Charcoal-grilled lamb kebab served with rice and vegetables.</p>
           <span class="price">$12.99</span>
+          <button class="order-btn" data-name="Grilled Kebab" data-price="12.99">Order Now</button>
         </div>
         <div class="menu-item" data-aos="fade-up">
           <img src="assets/images/mansaf.jpg" alt="Mansaf" />
@@ -269,6 +270,18 @@
         e.preventDefault();
         const target = document.querySelector(this.getAttribute("href"));
         target.scrollIntoView({ behavior: "smooth" });
+      });
+    });
+  </script>
+  <script>
+    document.querySelectorAll('.order-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const name = button.dataset.name;
+        const price = parseFloat(button.dataset.price);
+        let orders = JSON.parse(localStorage.getItem('sofraOrders')) || [];
+        orders.push({ name, price, quantity: 1 });
+        localStorage.setItem('sofraOrders', JSON.stringify(orders));
+        alert(`"${name}" has been added to your orders.`);
       });
     });
   </script>
