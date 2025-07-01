@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sofra Restaurant</title>
-  <link rel="stylesheet" href="style index.css" />
+  <link rel="stylesheet" href="assets/css/style index.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
 </head>
 <body>
   <header>
@@ -14,65 +15,52 @@
       <nav>
         <ul class="nav-links">
           <li><a href="index.html" class="active">Home</a></li>
-          <li><a href="orders.html">Orders</a></li>
           <li><a href="menu.html">Menu</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="orders.html">Orders</a></li>
+          <li><a href="login.html">Admin</a></li>
         </ul>
       </nav>
-      <div class="burger">
-        <div></div><div></div><div></div>
-      </div>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="hero-text">
+    <section class="hero" data-aos="fade-up">
+      <div class="hero-content">
         <h2>Welcome to Sofra</h2>
-        <p>Your taste journey starts here — delicious food delivered fresh.</p>
-        <a href="menu.html" class="btn btn-primary">Explore Menu</a>
+        <p>Authentic flavors, delightful experiences. Discover our rich menu now.</p>
+        <a href="menu.html" class="btn">Explore Menu</a>
       </div>
       <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="Delicious food" />
+        <img src="assets/images/hero-food.jpg" alt="Delicious food" />
       </div>
     </section>
 
-    <section class="features">
-      <div class="container grid">
-        <a href="orders.html" class="feature-card">
-          <i class="fas fa-receipt"></i>
-          <h3>Orders</h3>
-          <p>Track and manage your orders seamlessly.</p>
-        </a>
-
-        <a href="menu.html" class="feature-card">
-          <i class="fas fa-utensils"></i>
-          <h3>Menu</h3>
-          <p>Explore our delicious dishes and specials.</p>
-        </a>
-
-        <a href="contact.html" class="feature-card">
-          <i class="fas fa-phone"></i>
-          <h3>Contact</h3>
-          <p>Reach out to us for any questions or feedback.</p>
-        </a>
+    <section class="highlights" data-aos="fade-up" data-aos-delay="200">
+      <div class="feature-card">
+        <i class="fas fa-utensils"></i>
+        <h3>Daily Fresh Meals</h3>
+        <p>Prepared with passion and fresh ingredients every day.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-truck"></i>
+        <h3>Fast Delivery</h3>
+        <p>Delivered hot & fresh to your doorstep in minutes.</p>
+      </div>
+      <div class="feature-card">
+        <i class="fas fa-star"></i>
+        <h3>Top Rated</h3>
+        <p>Hundreds of satisfied customers love Sofra.</p>
       </div>
     </section>
   </main>
 
-  <footer>
-    <p>© 2025 Sofra Restaurant. All rights reserved.</p>
-  </footer>
+  <footer class="footer">
+     &copy; 2025 Sofra Restaurant. All rights reserved.
+   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
   <script>
-    // Burger menu toggle for mobile
-    const burger = document.querySelector('.burger');
-    const navLinks = document.querySelector('.nav-links');
-
-    burger.addEventListener('click', () => {
-      navLinks.classList.toggle('nav-active');
-      burger.classList.toggle('toggle');
-    });
+    AOS.init();
   </script>
 </body>
 </html>
